@@ -3,58 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
   <title>CodeQuest: Space Coder</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="game-container">
-    <button id="play-button" class="button">Play</button>
-    <button id="tutorial-button" class="button">Tutorial</button>
-    <button id="about-button" class="button">About</button>
-    <div id="challenge-screen" style="display: none;">
-      <div id="score-display">Score: 0</div>
-      <div id="target-area">
+  <main id="game-container" role="main" aria-label="CodeQuest: Space Coder game">
+    <button id="play-button" class="button" aria-label="Start playing the game" tabindex="0">Play</button>
+    <button id="tutorial-button" class="button" aria-label="View the tutorial" tabindex="0">Tutorial</button>
+    <button id="about-button" class="button" aria-label="View about and feedback form" tabindex="0">About</button>
+    <section id="challenge-screen" style="display: none;" aria-label="Challenge screen">
+      <div id="score-display" aria-live="polite">Score: 0</div>
+      <div id="target-area" aria-label="Target output">
         <div id="target-button" class="challenge-button">Target Button</div>
         <div id="target-layout" class="layout">
           <div class="header">Header</div>
           <div class="content">Content</div>
         </div>
-        <button id="target-js-button" class="challenge-button">Repair Ship</button>
+        <button id="target-js-button" class="challenge-button" aria-label="Target repair ship button">Repair Ship</button>
         <div id="target-text" class="text-display">Mission Ready!</div>
       </div>
-      <div id="player-area">
+      <div id="player-area" aria-label="Your output">
         <div id="player-button" class="challenge-button">Your Button</div>
         <div id="player-layout" class="layout"></div>
-        <button id="player-js-button" class="challenge-button">Repair Ship</button>
+        <button id="player-js-button" class="challenge-button" aria-label="Your repair ship button">Repair Ship</button>
         <div id="player-text" class="text-display">Waiting...</div>
       </div>
-      <textarea id="code-editor" placeholder="Write your code here..."></textarea>
-      <button id="submit-button" class="button">Submit</button>
-      <button id="hint-button" class="button">Hint</button>
-      <button id="next-button" class="button" style="display: none;">Next Level</button>
-      <button id="menu-button" class="button">Back to Menu</button>
-      <div id="hint-display" style="display: none;"></div>
-    </div>
-    <div id="about-screen" style="display: none;">
+      <textarea id="code-editor" placeholder="Write your code here..." aria-label="Code input area"></textarea>
+      <button id="submit-button" class="button" aria-label="Submit your code" tabindex="0">Submit</button>
+      <button id="hint-button" class="button" aria-label="Get a hint" tabindex="0">Hint</button>
+      <button id="next-button" class="button" style="display: none;" aria-label="Go to next level" tabindex="0">Next Level</button>
+      <button id="menu-button" class="button" aria-label="Return to main menu" tabindex="0">Back to Menu</button>
+      <div id="hint-display" style="display: none;" aria-live="polite"></div>
+    </section>
+    <section id="about-screen" style="display: none;" aria-label="About and feedback screen">
       <div id="about-content">
         <h2>CodeQuest: Space Coder</h2>
         <p>Learn HTML, CSS, and JavaScript through fun challenges!</p>
-        <form name="feedback" method="POST" data-netlify="true" id="feedback-form">
+        <form name="feedback" method="POST" data-netlify="true" id="feedback-form" aria-label="Feedback form">
           <input type="hidden" name="form-name" value="feedback">
           <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required>
+          <input type="text" id="name" name="name" required aria-required="true">
           <label for="score">Score:</label>
-          <input type="number" id="score" name="score" readonly>
+          <input type="number" id="score" name="score" readonly aria-readonly="true">
           <label for="comments">Comments:</label>
-          <textarea id="comments" name="comments" rows="4"></textarea>
-          <button type="submit" class="button">Submit Feedback</button>
+          <textarea id="comments" name="comments" rows="4" aria-describedby="comments-hint"></textarea>
+          <p id="comments-hint" class="form-hint">Share your thoughts on the game!</p>
+          <button type="submit" class="button" aria-label="Submit feedback" tabindex="0">Submit Feedback</button>
         </form>
-        <div id="form-confirmation" style="display: none;">Thank you for your feedback!</div>
+        <div id="form-confirmation" style="display: none;" aria-live="polite">Thank you for your feedback!</div>
       </div>
-      <button id="about-menu-button" class="button">Back to Menu</button>
-    </div>
-  </div>
+      <button id="about-menu-button" class="button" aria-label="Return to main menu from about screen" tabindex="0">Back to Menu</button>
+    </section>
+  </main>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+  <script src="utils.js"></script>
   <script src="sketch.js"></script>
 </body>
 </html>
