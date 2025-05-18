@@ -48,7 +48,7 @@ function draw() {
     textSize(40);
     text('CodeQuest: Space Coder', width / 2, 150);
     textSize(20);
-    text('Learn HTML, CSS, and JavaScript!', width / 2, 200);
+    text('Master Coding Skills!', width / 2, 200);
     
     playButton.show();
     tutorialButton.show();
