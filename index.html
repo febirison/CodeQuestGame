@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeQuest: Space Coder</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+</head>
+<body>
+  <div id="game-container">
+    <button id="play-button" class="button">Play</button>
+    <button id="tutorial-button" class="button">Tutorial</button>
+    <button id="about-button" class="button">About</button>
+    <div id="challenge-screen" style="display: none;">
+      <div id="target-button" class="challenge-button">Target Button</div>
+      <div id="player-button" class="challenge-button">Your Button</div>
+      <textarea id="code-editor" placeholder="Write your CSS here..."></textarea>
+      <button id="submit-button" class="button">Submit</button>
+    </div>
+  </div>
+  <script src="sketch.js"></script>
+</body>
+</html>
