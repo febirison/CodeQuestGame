@@ -3,7 +3,7 @@ let stars = [];
 let currentLevel = 1;
 let score = 0;
 let hintCount = 0;
-let playButton, tutorialButton, aboutButton, challengeScreen, codeEditor, playerButton, playerLayout, playerJsButton, playerText, submitButton, nextButton, menuButton, hintButton, scoreDisplay, hintDisplay;
+let playButton, tutorialButton, aboutButton, challengeScreen, codeEditor, playerButton, playerLayout, playerJsButton, playerText, submitButton, nextButton, menuButton, hintButton, scoreDisplay, hintDisplay, aboutScreen, scoreInput, formConfirmation, aboutMenuButton;
 
 const hints = {
   1: [
@@ -57,18 +57,29 @@ function setup() {
   hintButton = select('#hint-button');
   scoreDisplay = select('#score-display');
   hintDisplay = select('#hint-display');
+  aboutScreen = select('#about-screen');
+  scoreInput = select('#score');
+  formConfirmation = select('#form-confirmation');
+  aboutMenuButton = select('#about-menu-button');
   
   // Add click events
   playButton.mousePressed(() => { gameState = 'play'; currentLevel = 1; score = 0; hintCount = 0; resetChallenge(); });
   tutorialButton.mousePressed(() => { gameState = 'tutorial'; });
-  aboutButton.mousePressed(() => { gameState = 'about'; });
+  aboutButton.mousePressed(() => { gameState = 'about'; scoreInput.value(score); formConfirmation.hide(); });
   submitButton.mousePressed(checkCode);
   nextButton.mousePressed(nextLevel);
   menuButton.mousePressed(() => { gameState = 'menu'; });
   hintButton.mousePressed(showHint);
+  aboutMenuButton.mousePressed(() => { gameState = 'menu'; });
   
   // Set up target JS button behavior
   select('#target-js-button').mousePressed(() => alert('Ship Repaired!'));
+  
+  // Handle form submission
+  select('#feedback-form').elt.addEventListener('submit', () => {
+    formConfirmation.show();
+    setTimeout(() => formConfirmation.hide(), 3000);
+  });
 }
 
 function draw() {
@@ -94,11 +105,13 @@ function draw() {
     tutorialButton.show();
     aboutButton.show();
     challengeScreen.hide();
+    aboutScreen.hide();
   } else if (gameState === 'play') {
     playButton.hide();
     tutorialButton.hide();
     aboutButton.hide();
     challengeScreen.show();
+    aboutScreen.hide();
     
     // Update score display
     scoreDisplay.html(`Score: ${score}`);
@@ -149,7 +162,6 @@ function draw() {
       try {
         playerText.html('Waiting...');
         eval(code);
-        // Call the function if defined
         if (typeof updateStatus === 'function') {
           updateStatus();
         }
@@ -157,20 +169,28 @@ function draw() {
         console.log('JS Error:', e);
       }
     }
-  } else {
+  } else if (gameState === 'about') {
     playButton.hide();
     tutorialButton.hide();
     aboutButton.hide();
     challengeScreen.hide();
+    aboutScreen.show();
     
     fill(255);
     textAlign(CENTER);
     textSize(30);
-    if (gameState === 'tutorial') {
-      text('Tutorial Screen (Placeholder)', width / 2, height / 2);
-    } else if (gameState === 'about') {
-      text('About Screen (Placeholder)', width / 2, height / 2);
-    }
+    text('Share Your Feedback!', width / 2, 50);
+  } else if (gameState === 'tutorial') {
+    playButton.hide();
+    tutorialButton.hide();
+    aboutButton.hide();
+    challengeScreen.hide();
+    aboutScreen.hide();
+    
+    fill(255);
+    textAlign(CENTER);
+    textSize(30);
+    text('Tutorial Screen (Placeholder)', width / 2, height / 2);
   }
 }
 

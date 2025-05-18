@@ -36,6 +36,24 @@
       <button id="menu-button" class="button">Back to Menu</button>
       <div id="hint-display" style="display: none;"></div>
     </div>
+    <div id="about-screen" style="display: none;">
+      <div id="about-content">
+        <h2>CodeQuest: Space Coder</h2>
+        <p>Learn HTML, CSS, and JavaScript through fun challenges!</p>
+        <form name="feedback" method="POST" data-netlify="true" id="feedback-form">
+          <input type="hidden" name="form-name" value="feedback">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="score">Score:</label>
+          <input type="number" id="score" name="score" readonly>
+          <label for="comments">Comments:</label>
+          <textarea id="comments" name="comments" rows="4"></textarea>
+          <button type="submit" class="button">Submit Feedback</button>
+        </form>
+        <div id="form-confirmation" style="display: none;">Thank you for your feedback!</div>
+      </div>
+      <button id="about-menu-button" class="button">Back to Menu</button>
+    </div>
   </div>
   <script src="sketch.js"></script>
 </body>
