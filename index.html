@@ -13,20 +13,28 @@
     <button id="tutorial-button" class="button">Tutorial</button>
     <button id="about-button" class="button">About</button>
     <div id="challenge-screen" style="display: none;">
+      <div id="score-display">Score: 0</div>
       <div id="target-area">
         <div id="target-button" class="challenge-button">Target Button</div>
         <div id="target-layout" class="layout">
           <div class="header">Header</div>
           <div class="content">Content</div>
         </div>
+        <button id="target-js-button" class="challenge-button">Repair Ship</button>
+        <div id="target-text" class="text-display">Mission Ready!</div>
       </div>
       <div id="player-area">
         <div id="player-button" class="challenge-button">Your Button</div>
         <div id="player-layout" class="layout"></div>
+        <button id="player-js-button" class="challenge-button">Repair Ship</button>
+        <div id="player-text" class="text-display">Waiting...</div>
       </div>
       <textarea id="code-editor" placeholder="Write your code here..."></textarea>
       <button id="submit-button" class="button">Submit</button>
+      <button id="hint-button" class="button">Hint</button>
       <button id="next-button" class="button" style="display: none;">Next Level</button>
+      <button id="menu-button" class="button">Back to Menu</button>
+      <div id="hint-display" style="display: none;"></div>
     </div>
   </div>
   <script src="sketch.js"></script>
